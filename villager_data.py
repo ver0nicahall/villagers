@@ -32,13 +32,18 @@ def get_villagers_by_species(filename, search_string="All"):
     Return:
         - list[str]: a list of names
     """
-
+    file1 = open(filename)
     villagers = []
 
     # TODO: replace this with your code
+    for line in file1:
+        line.strip()
+        split_list = line.split('|')
+        if split_list[1] == search_string or search_string == "All":
+            #add name of villager to list
+            villagers.append(split_list[0])
 
     return sorted(villagers)
-
 
 def all_names_by_hobby(filename):
     """Return a list of lists containing villagers' names, grouped by hobby.
