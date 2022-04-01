@@ -45,6 +45,7 @@ def get_villagers_by_species(filename, search_string="All"):
 
     return sorted(villagers)
 
+
 def all_names_by_hobby(filename):
     """Return a list of lists containing villagers' names, grouped by hobby.
 
@@ -54,10 +55,59 @@ def all_names_by_hobby(filename):
     Return:
         - list[list[str]]: a list of lists containing names
     """
+    
+    # First create a set of all the hobbys of the villagers.
+    # Read the file again for each of the hobby in the set.
+        # make a list of all villagers name.
+        # Add this result to the final output.
 
-    # TODO: replace this with your code
+    # TODO: replace this with your code 
 
-    return []
+    #output: 
+#    [[Antonio,Annie, Bart], [Alex, Megan, Tyler]...]
+    file1 = open(filename)
+
+    hobbies = set()
+
+    #splitting the lines by '|'
+    for line in file1:
+        line.strip()
+        split_list = line.split('|')
+        hobbies.add(split_list[3])
+    
+    def names_hobby(hobby):
+        """
+            Helper function to get the namem list based on the hobby value passed to the function.
+            Takes input as hobby.
+            Output is list of names with the same hobby.
+        """
+
+        names = []
+        file1 = open(filename)
+
+        for line in file1:
+            line.strip()
+            split_list = line.split('|')
+            if hobby == split_list[3]:
+                names.append(split_list[0])
+        
+        return names
+
+    #hobby = list(hobbies)
+    hobby = ('Fitness', 'Nature','Education', 'Music', 'Fashion', 'Play')
+    result = []
+
+    #calling helper function 'names_hobby' to add each villagers name to the hobby list
+
+    for i in hobby:
+
+        name1 = names_hobby(i)
+        name1.sort()
+        result.append(name1)
+
+    print(result)
+    
+    return result
 
 
 def all_data(filename):
